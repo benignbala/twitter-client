@@ -1,0 +1,20 @@
+apply plugin: 'groovy'
+apply plugin: 'maven'
+apply plugin: 'application'
+
+group 'org.benignbala.twitter'
+version '0.1-alpha'
+
+mainClassName = "org.benignbala.twitter.Client"
+
+repositories {
+    jcenter()
+}
+
+dependencies {
+    compile 'org.codehaus.groovy:groovy-all:2.4.5'
+    compile 'org.codehaus.groovy.modules.http-builder:http-builder:0.7'
+    compile 'oauth.signpost:signpost-core:1.2.1.2'
+    compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
+    testCompile group: 'junit', name: 'junit', version: '4.11'
+}
