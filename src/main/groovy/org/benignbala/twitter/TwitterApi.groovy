@@ -1,6 +1,7 @@
 package org.benignbala.twitter
 
 import groovy.transform.TupleConstructor
+import groovyx.net.http.HTTPBuilder
 import groovyx.net.http.RESTClient
 
 /**
@@ -21,5 +22,12 @@ class TwitterApi {
         tweetsFile << resp.data
     }
 
+    private String getBearerToken() {
+        def basic = securityContext.getBasicAuthToken()
+        def httpBuilder = new HTTPBuilder(TwitterURL.getOAuthUrl())
+        httpBuilder.auth.basic(securityContext.getConsumerKey(), securityContext.getConsumerSecret())
+        def resp = httpBuilder.post(grant_type: "client_credentials")
+        println resp.properties
+    }
 
 }

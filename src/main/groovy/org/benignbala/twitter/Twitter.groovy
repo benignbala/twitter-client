@@ -11,11 +11,9 @@ import java.text.SimpleDateFormat
 class Twitter {
     String consumerKey
     String consumerSecret
-    String accessToken
-    String accessSecret
 
     String fetchAllTweets(String screenName ) {
-        def securityContext = new TwitterSecurityContext(consumerKey, consumerSecret, accessToken, accessSecret)
+        def securityContext = new TwitterSecurityContext(consumerKey, consumerSecret)
         def api = new TwitterApi(securityContext)
         def tweetsFile = api.getAllTweets(screenName)
         return tweetsFile
