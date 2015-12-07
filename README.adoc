@@ -1,0 +1,20 @@
+= Twitter-Client
+
+A Groovy wrapper over the twitter REST API.
+
+== How to use
+
+Login to apps.twitter.com and create a new app. Generate the consumer key and consumer api secret
+from that page. Then, create a groovy script like so:
+
+[source,groovy]
+....
+@Grab('org.benignbala.twitter:twitter-client:0.1-alpha')
+
+import org.benignbala.twitter.Twitter
+
+def cKey = "consumer key"
+def cSecret = "consumer secret"
+def twitter = Twitter(cKey, cSecret)
+twitter.fetchAllTweets("your screen name")
+....
