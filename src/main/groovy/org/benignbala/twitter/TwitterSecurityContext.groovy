@@ -11,8 +11,9 @@ class TwitterSecurityContext {
     String consumerSecret
 
     String getBasicAuthToken() {
-        def bConsumerKey = consumerKey.bytes.encodeBase64().toString()
-        def bConsumerSecret = consumerSecret.bytes.encodeBase64().toString()
+        def bConsumerKey = consumerKey
+        def bConsumerSecret = consumerSecret
+        println "Will encode: ${bConsumerKey}:${bConsumerSecret}"
         return "${bConsumerKey}:${bConsumerSecret}".bytes.encodeBase64().toString()
     }
 }
