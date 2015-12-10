@@ -18,6 +18,12 @@ class Twitter {
         def tweetsFile = api.getAllTweets(screenName)
         return tweetsFile
     }
-}
 
+    String fetchFavourites(String screenName) {
+        def securityContext = new TwitterSecurityContext(consumerKey, consumerSecret)
+        def api = new TwitterApi(securityContext)
+        def tweetsFile = api.getFavouriteTweets(screenName)
+        return tweetsFile
+    }
+}
 

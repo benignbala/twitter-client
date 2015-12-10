@@ -1,11 +1,8 @@
 apply plugin: 'groovy'
 apply plugin: 'maven'
-apply plugin: 'application'
 
 group 'org.benignbala.twitter'
 version '0.1-alpha'
-
-mainClassName = "org.benignbala.twitter.Client"
 
 repositories {
     jcenter()
@@ -18,4 +15,22 @@ dependencies {
     compile 'oauth.signpost:signpost-commonshttp4:1.2.1.2'
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile group: 'org.spockframework', name: 'spock-core', version: '1.0-groovy-2.4'
+}
+
+task removeGrapes(type: Exec) {
+    dependsOn install
+}
+
+task installGrapes(type: Exec) {
+    dependsOn removeGrapes
+}
+
+removeGrapes.doFirst {
+    commandLine 'grape'
+    args 'uninstall', 'org.benignbala.twitter', 'twitter-client', '0.1-alpha'
+}
+
+installGrapes.doFirst {
+    commandLine 'grape'
+    args 'install', 'org.benignbala.twitter', 'twitter-client', '0.1-alpha'
 }
